@@ -6,68 +6,75 @@
 // 'starter.controllers' is found in controllers.js
 var ionicParseSeed = angular.module('starter', ['ionic', 'starter.controllers'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
+    .run(function ($ionicPlatform) {
+        $ionicPlatform.ready(function () {
+            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            // for form inputs)
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            }
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
 
-      Parse.initialize('lxAsQ1JgMWELK3HRFTUDnvkptQZThWmecgf7LiZX', 'Vga3cqKhuQ3opVoYFqiktGW3UYf61ioNBWyROKgi');
-  });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-  .state('app', {
-    url: "/app",
-    abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
-  })
-
-  .state('app.search', {
-    url: "/search",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/search.html"
-      }
-    }
-  })
-
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
+            Parse.initialize('lxAsQ1JgMWELK3HRFTUDnvkptQZThWmecgf7LiZX', 'Vga3cqKhuQ3opVoYFqiktGW3UYf61ioNBWyROKgi');
+        });
     })
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $stateProvider.
+            state('welcome', {
+                url: '/welcome?clear',
+                templateUrl: 'templates/welcome.html',
+                controller: 'WelcomeController'
+            })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
-});
+            .state('app', {
+                url: '/app?clear',
+                abstract: true,
+                templateUrl: 'templates/menu.html',
+                controller: 'AppController'
+            })
+
+            .state('app.home', {
+                url: '/home',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/home.html',
+                        controller: 'HomeController'
+                    }
+                }
+            })
+
+            .state('app.login', {
+                url: '/login',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/login.html',
+                        controller: 'LoginController'
+                    }
+                }
+            })
+
+            .state('app.forgot', {
+                url: '/forgot',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/forgotPassword.html',
+                        controller: 'ForgotPasswordController'
+                    }
+                }
+            })
+
+            .state('app.register', {
+                url: '/register',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/register.html',
+                        controller: 'RegisterController'
+                    }
+                }
+            });
+
+        $urlRouterProvider.otherwise('/welcome');
+    });
