@@ -32,7 +32,10 @@ ionicParseSeed
                 User.logIn(userData.username, userData.password, {
                     success: function(user) {
                         $scope.currentUser = User.current();
+
                         $scope.loginModal.hide();
+
+                        clearFields(userData);
                     },
                     error: function(user, error) {
                         // The login failed. Check error to see why.
@@ -62,8 +65,11 @@ ionicParseSeed
                 newUser.signUp(null, {
                     success: function(user) {
                         $scope.currentUser = User.current();
+
                         $scope.registerModal.hide();
                         $scope.loginModal.hide();
+
+                        clearFields(userData);
                     },
                     error: function(user, error) {
                         // Show the error message somewhere and let the user try again.
@@ -80,5 +86,11 @@ ionicParseSeed
         $scope.logout = function () {
             User.logOut();
             $scope.loginModal.show();
+        };
+
+        function clearFields(userData) {
+            userData.username = "";
+            userData.password = "";
+            userData.email = "";
         }
     });
