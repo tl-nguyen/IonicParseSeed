@@ -1,7 +1,7 @@
 "use strict";
 
 ionicParseSeed
-    .controller('AppCtrl', function($scope, $ionicModal, $timeout, User) {
+    .controller('AppCtrl', function($scope, $ionicModal, popup, User) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.registerData = {};
@@ -38,8 +38,7 @@ ionicParseSeed
                         clearFields(userData);
                     },
                     error: function(user, error) {
-                        // The login failed. Check error to see why.
-                        alert("Error: " + error.code + " " + error.message);
+                        popup.errorAlert(error.message);
                     }
                 })
             }
@@ -72,8 +71,7 @@ ionicParseSeed
                         clearFields(userData);
                     },
                     error: function(user, error) {
-                        // Show the error message somewhere and let the user try again.
-                        alert("Error: " + error.code + " " + error.message);
+                        popup.errorAlert(error.message);
                     }
                 });
             }
