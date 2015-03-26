@@ -7602,3 +7602,9 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+a {
+  color: #387ef5; }
+
+.center {
+  text-align: center; }

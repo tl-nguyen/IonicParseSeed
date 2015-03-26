@@ -21,3 +21,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// Our style
+
+a {
+  color: $positive;
+}
+
+.center {
+  text-align: center;
+}
+
+
