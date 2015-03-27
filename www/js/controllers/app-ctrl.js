@@ -1,12 +1,12 @@
 "use strict";
 
 ionicParseSeed
-    .controller('AppCtrl', function ($scope, $ionicModal, popup, loading, User) {
+    .controller('AppCtrl', function ($rootScope, $scope, $ionicModal, popup, loading, User) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.registerData = {};
 
-        $scope.currentUser = User.current();
+        $rootScope.currentUser = User.current();
 
         // Create the login modal that we will use later
         $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -14,7 +14,7 @@ ionicParseSeed
         }).then(function (modal) {
             $scope.loginModal = modal;
 
-            if (!$scope.currentUser) {
+            if (!$rootScope.currentUser) {
                 $scope.loginModal.show();
             }
         });
@@ -31,7 +31,7 @@ ionicParseSeed
             User.logIn(userData.username, userData.password, {
                 success: function (user) {
                     loading.hide();
-                    $scope.currentUser = User.current();
+                    $rootScope.currentUser = user;
                     $scope.loginModal.hide();
                     clearFields(userData);
                 },
@@ -57,7 +57,7 @@ ionicParseSeed
             newUser.signUp(null, {
                 success: function (user) {
                     loading.hide();
-                    $scope.currentUser = User.current();
+                    $rootScope.currentUser = user;
                     $scope.registerModal.hide();
                     $scope.loginModal.hide();
 

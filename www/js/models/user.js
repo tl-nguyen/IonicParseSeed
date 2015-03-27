@@ -2,31 +2,26 @@
 
 ionicParseSeed
     .factory("User", function () {
-        var User = Parse.User;
+        Parse.User.extend({
+            getUsername: function () {
+                return this.get("username");
+            },
+            setUsername: function (username) {
+                this.set("username", username);
+            },
+            getPassword: function () {
+                return this.get("password");
+            },
+            setPassword: function (password) {
+                this.set("password", password);
+            },
+            getEmail: function () {
+                return this.get("email");
+            },
+            setEmail: function (email) {
+                this.set("email", email);
+            }
+        });
 
-        User.prototype.setUsername = function (username) {
-            this.set("username", username);
-        };
-
-        User.prototype.getUsername = function () {
-            this.get("username");
-        };
-
-        User.prototype.setPassword = function (password) {
-            this.set("password", password);
-        };
-
-        User.prototype.getPassword = function () {
-            this.get("password");
-        };
-
-        User.prototype.setEmail = function (email) {
-            this.set("email", email);
-        };
-
-        User.prototype.getEmail = function () {
-            this.get("email");
-        };
-
-        return User;
+        return Parse.User;
     });
