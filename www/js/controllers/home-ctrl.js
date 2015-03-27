@@ -2,9 +2,6 @@
 
 ionicParseSeed
     .controller('HomeCtrl', function($rootScope, $scope, gravatar) {
-
-        console.log(gravatar.get($rootScope.currentUser.getEmail()));
-
         $scope.playlists = [
             { title: 'Reggae', id: 1 },
             { title: 'Chill', id: 2 },

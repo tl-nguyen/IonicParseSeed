@@ -18,11 +18,16 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item nav-clear menu-close href="#/app/home">
-                    Home
+                <ion-item class="item-remove-animate item-avatar item-icon-right"
+                        ui-sref="app.home">
+                    <img ng-src="{{getGravatarUrl()}}" alt=""/>
+                    <p>Profile</p>
                 </ion-item>
-                <ion-item nav-clear menu-close ng-click="logout()">
-                    Logout
+                <ion-item ui-sref="app.home">
+                    <p>Home</p>
+                </ion-item>
+                <ion-item ng-click="logout()">
+                    <p>Logout</p>
                 </ion-item>
             </ion-list>
         </ion-content>

@@ -1,7 +1,7 @@
 "use strict";
 
 ionicParseSeed
-    .controller('AppCtrl', function ($rootScope, $scope, $window, $ionicModal, popup, loading, modal, User) {
+    .controller('AppCtrl', function ($rootScope, $scope, $window, $ionicModal, popup, loading, modal, gravatar, User) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.registerData = {};
@@ -65,6 +65,10 @@ ionicParseSeed
         $scope.logout = function () {
             User.logOut();
             $scope.loginModal.show();
+        };
+
+        $scope.getGravatarUrl = function () {
+              return gravatar.getBig($rootScope.currentUser.getEmail());
         };
 
         function reload() {
