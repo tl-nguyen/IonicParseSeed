@@ -9,9 +9,6 @@ ionicParseSeed
             setUsername: function (username) {
                 this.set("username", username);
             },
-            getPassword: function () {
-                return this.get("password");
-            },
             setPassword: function (password) {
                 this.set("password", password);
             },

@@ -2,7 +2,7 @@
 
 var ionicParseSeed = angular.module('starter', ['ionic'])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, constants) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -14,7 +14,7 @@ var ionicParseSeed = angular.module('starter', ['ionic'])
                 StatusBar.styleDefault();
             }
 
-            Parse.initialize('lxAsQ1JgMWELK3HRFTUDnvkptQZThWmecgf7LiZX', 'Vga3cqKhuQ3opVoYFqiktGW3UYf61ioNBWyROKgi');
+            Parse.initialize(constants.appId, constants.javascriptId);
         });
     })
 
