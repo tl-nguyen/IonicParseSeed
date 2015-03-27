@@ -35,6 +35,27 @@ var ionicParseSeed = angular.module('starter', ['ionic'])
                         controller: 'HomeCtrl'
                     }
                 }
+            }).state('app.home.tab1', {
+                url: "/tab1",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tab1.html"
+                    }
+                }
+            }).state('app.home.tab2', {
+                url: "/tab2",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tab2.html"
+                    }
+                }
+            }).state('app.home.tab3', {
+                url: "/tab3",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/tab3.html"
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');
