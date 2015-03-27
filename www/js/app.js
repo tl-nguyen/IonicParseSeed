@@ -2,7 +2,7 @@
 
 var ionicParseSeed = angular.module('starter', ['ionic'])
 
-    .run(function ($ionicPlatform, constants) {
+    .run(function ($ionicPlatform, config) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -14,7 +14,7 @@ var ionicParseSeed = angular.module('starter', ['ionic'])
                 StatusBar.styleDefault();
             }
 
-            Parse.initialize(constants.appId, constants.javascriptId);
+            Parse.initialize(config.APP_ID, config.JAVASCRIPT_ID);
         });
     })
 

@@ -1,7 +1,10 @@
 "use strict";
 
 ionicParseSeed
-    .controller('HomeCtrl', function($ionicModal, $scope) {
+    .controller('HomeCtrl', function($rootScope, $scope) {
+
+        console.log($rootScope.currentUser.getUsername());
+
         $scope.playlists = [
             { title: 'Reggae', id: 1 },
             { title: 'Chill', id: 2 },

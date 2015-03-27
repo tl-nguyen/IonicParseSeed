@@ -1,7 +1,7 @@
 "use strict";
 
 ionicParseSeed
-    .controller('AppCtrl', function ($rootScope, $scope, $ionicModal, popup, loading, modal, User) {
+    .controller('AppCtrl', function ($rootScope, $scope, $window, $ionicModal, popup, loading, modal, User) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.registerData = {};
@@ -26,10 +26,7 @@ ionicParseSeed
             loading.show();
             User.logIn(userData.username, userData.password, {
                 success: function (user) {
-                    loading.hide();
-                    $rootScope.currentUser = user;
-                    $scope.loginModal.hide();
-                    clearFields(userData);
+                    reload();
                 },
                 error: function (user, error) {
                     loading.hide();
@@ -52,12 +49,7 @@ ionicParseSeed
             loading.show();
             newUser.signUp(null, {
                 success: function (user) {
-                    loading.hide();
-                    $rootScope.currentUser = user;
-                    $scope.registerModal.hide();
-                    $scope.loginModal.hide();
-
-                    clearFields(userData);
+                    reload();
                 },
                 error: function (user, error) {
                     loading.hide();
@@ -75,9 +67,7 @@ ionicParseSeed
             $scope.loginModal.show();
         };
 
-        function clearFields(userData) {
-            userData.username = "";
-            userData.password = "";
-            userData.email = "";
+        function reload() {
+            $window.location.reload(true)
         }
     });
