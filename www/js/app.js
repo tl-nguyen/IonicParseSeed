@@ -38,21 +38,21 @@ var ionicParseSeed = angular.module('starter', ['ionic'])
             }).state('app.home.tab1', {
                 url: "/tab1",
                 views: {
-                    'menuContent': {
+                    'tab1': {
                         templateUrl: "templates/tab1.html"
                     }
                 }
             }).state('app.home.tab2', {
                 url: "/tab2",
                 views: {
-                    'menuContent': {
+                    'tab2': {
                         templateUrl: "templates/tab2.html"
                     }
                 }
             }).state('app.home.tab3', {
                 url: "/tab3",
                 views: {
-                    'menuContent': {
+                    'tab3': {
                         templateUrl: "templates/tab3.html"
                     }
                 }
