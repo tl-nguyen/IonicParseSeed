@@ -1,9 +1,9 @@
 "use strict";
 
 ionicParseSeed
-    .controller('HomeCtrl', function($rootScope, $scope) {
+    .controller('HomeCtrl', function($rootScope, $scope, gravatar) {
 
-        console.log($rootScope.currentUser.getUsername());
+        console.log(gravatar.get($rootScope.currentUser.getEmail()));
 
         $scope.playlists = [
             { title: 'Reggae', id: 1 },
