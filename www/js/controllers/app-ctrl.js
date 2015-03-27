@@ -1,7 +1,7 @@
 "use strict";
 
 ionicParseSeed
-    .controller('AppCtrl', function($scope, $ionicModal, popup, User) {
+    .controller('AppCtrl', function ($scope, $ionicModal, popup, loading, User) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.registerData = {};
@@ -11,7 +11,7 @@ ionicParseSeed
         // Create the login modal that we will use later
         $ionicModal.fromTemplateUrl('templates/login.html', {
             scope: $scope
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.loginModal = modal;
 
             if (!$scope.currentUser) {
@@ -21,27 +21,25 @@ ionicParseSeed
 
         $ionicModal.fromTemplateUrl('templates/register.html', {
             scope: $scope
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.registerModal = modal;
         });
 
         // Perform the login action when the user submits the login form
-        $scope.doLogin = function(userData) {
-            if (userData.username != "" &&
-                userData.password != "") {
-                User.logIn(userData.username, userData.password, {
-                    success: function(user) {
-                        $scope.currentUser = User.current();
-
-                        $scope.loginModal.hide();
-
-                        clearFields(userData);
-                    },
-                    error: function(user, error) {
-                        popup.errorAlert(error.message);
-                    }
-                })
-            }
+        $scope.doLogin = function (userData) {
+            loading.show();
+            User.logIn(userData.username, userData.password, {
+                success: function (user) {
+                    loading.hide();
+                    $scope.currentUser = User.current();
+                    $scope.loginModal.hide();
+                    clearFields(userData);
+                },
+                error: function (user, error) {
+                    loading.hide();
+                    popup.errorAlert(error.message);
+                }
+            })
         };
 
         $scope.showRegister = function () {
@@ -51,30 +49,25 @@ ionicParseSeed
         $scope.doRegister = function (userData) {
             var newUser = new User();
 
-            console.log(userData);
+            newUser.setUsername(userData.username);
+            newUser.setPassword(userData.password);
+            newUser.setEmail(userData.email);
 
-            if (userData.username != "" &&
-                userData.password != "" &&
-                userData.email != "") {
+            loading.show();
+            newUser.signUp(null, {
+                success: function (user) {
+                    loading.hide();
+                    $scope.currentUser = User.current();
+                    $scope.registerModal.hide();
+                    $scope.loginModal.hide();
 
-                newUser.setUsername(userData.username);
-                newUser.setPassword(userData.password);
-                newUser.setEmail(userData.email);
-
-                newUser.signUp(null, {
-                    success: function(user) {
-                        $scope.currentUser = User.current();
-
-                        $scope.registerModal.hide();
-                        $scope.loginModal.hide();
-
-                        clearFields(userData);
-                    },
-                    error: function(user, error) {
-                        popup.errorAlert(error.message);
-                    }
-                });
-            }
+                    clearFields(userData);
+                },
+                error: function (user, error) {
+                    loading.hide();
+                    popup.errorAlert(error.message);
+                }
+            });
         };
 
         $scope.cancelRegister = function () {

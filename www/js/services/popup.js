@@ -30,9 +30,14 @@ ionicParseSeed
             return confirmPopup;
         };
 
+        var confirmSimple = function (callback) {
+            return confirm("Confirm", "Are you sure?", callback);
+        };
+
         return {
             alert: alert,
             errorAlert: errorAlert,
-            confirm: confirm
+            confirm: confirm,
+            confirmSimple: confirmSimple
         }
     });
