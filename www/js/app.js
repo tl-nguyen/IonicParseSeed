@@ -13,9 +13,9 @@ var ionicParseSeed = angular.module('starter', ['ionic'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
-
-            Parse.initialize(config.APP_ID, config.JAVASCRIPT_ID);
         });
+
+        Parse.initialize(config.APP_ID, config.JAVASCRIPT_ID);
     })
 
     .config(function($stateProvider, $urlRouterProvider) {
