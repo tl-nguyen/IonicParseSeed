@@ -9,4 +9,4 @@ resources/
 .idea/
 .c9/
 
-*/config.js
+www/js/config.js

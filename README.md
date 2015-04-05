@@ -1,4 +1,4 @@
 #This is a Parse + Ionic seed project
 
-- Change your config.example.js file to config.js
-- Open config.js and add your APP_ID and JAVASCRIPT_ID
+- Change your www/js/config.example.js file to www/js/config.js
+- Open config.js and edit your APP_ID and JAVASCRIPT_ID
